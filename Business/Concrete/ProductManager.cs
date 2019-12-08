@@ -1,36 +1,52 @@
 ﻿using Business.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        public void Delete(Product product)
+        readonly EfProductDal _efProductDal;
+
+        public ProductManager(EfProductDal efProductDal )
         {
-            throw new NotImplementedException();
+            _efProductDal = efProductDal;
         }
 
-        public Product GetById(int ProductId)
+        public void Add(Product product)
         {
-            throw new NotImplementedException();
+
+            // todo business rules, eklenmiş bir ürünü tekrar eklememek vs...
+            _efProductDal.Add(product);
+        }
+
+        public void Delete(Product product)
+        {
+            _efProductDal.Delete(product);
+        }
+
+        public Product GetById(int productId)
+        {
+           return _efProductDal.Get(p => p.ProductId == productId);
         }
 
         public List<Product> GetList()
         {
-            throw new NotImplementedException();
+            return _efProductDal.GetList().ToList();
         }
 
         public List<Product> GetListByCategory(int CategoryId)
         {
-            throw new NotImplementedException();
+            return _efProductDal.GetList(p => p.CategoryId == CategoryId).ToList();
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            _efProductDal.Update(product);
         }
     }
 }
