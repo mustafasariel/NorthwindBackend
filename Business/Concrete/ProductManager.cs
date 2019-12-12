@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constant;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -17,36 +19,40 @@ namespace Business.Concrete
             _efProductDal = efProductDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
 
             // todo business rules, eklenmiş bir ürünü tekrar eklememek vs...
             _efProductDal.Add(product);
+            return new SuccesResult(Messages.ProductAdd);
         }
 
-        public void Delete(Product product)
+        public IResult Delete(Product product)
         {
             _efProductDal.Delete(product);
+
+            return new SuccesResult(Messages.ProductDeleted);
         }
 
-        public Product GetById(int productId)
+        public IDataResult<Product> GetById(int productId)
         {
-           return _efProductDal.Get(p => p.ProductId == productId);
+           return  new SuccessDataResult<Product> (_efProductDal.Get(p => p.ProductId == productId));
         }
 
-        public List<Product> GetList()
+        public IDataResult<List<Product>> GetList()
         {
-            return _efProductDal.GetList().ToList();
+            return new SuccessDataResult<List<Product>>(_efProductDal.GetList().ToList());
         }
 
-        public List<Product> GetListByCategory(int CategoryId)
+        public IDataResult<List<Product>> GetListByCategory(int CategoryId)
         {
-            return _efProductDal.GetList(p => p.CategoryId == CategoryId).ToList();
+            return new SuccessDataResult<List<Product>>(_efProductDal.GetList(p => p.CategoryId == CategoryId).ToList());
         }
 
-        public void Update(Product product)
+        public IResult Update(Product product)
         {
             _efProductDal.Update(product);
+            return new SuccesResult(Messages.ProductUpdated);
         }
     }
 }
