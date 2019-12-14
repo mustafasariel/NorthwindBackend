@@ -7,7 +7,7 @@ using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
-namespace Business.DependencyResolvers
+namespace Business.DependencyResolvers.Autofact
 {
    public class AutofacBusinessModule:Module
     {
@@ -15,6 +15,8 @@ namespace Business.DependencyResolvers
         {
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<EfProductDal>().As<IProductDal>();
+
+            base.Load(builder);
         }
     }
 }

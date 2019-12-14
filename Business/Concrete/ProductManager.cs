@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constant;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -12,46 +13,46 @@ namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        readonly EfProductDal _efProductDal;
+        private IProductDal _productDal;
 
-        public ProductManager(EfProductDal efProductDal )
+        public ProductManager(IProductDal productDal)
         {
-            _efProductDal = efProductDal;
+            _productDal = productDal;
         }
 
         public IResult Add(Product product)
         {
 
             // todo business rules, eklenmiş bir ürünü tekrar eklememek vs...
-            _efProductDal.Add(product);
+            _productDal.Add(product);
             return new SuccesResult(Messages.ProductAdd);
         }
 
         public IResult Delete(Product product)
         {
-            _efProductDal.Delete(product);
+            _productDal.Delete(product);
 
             return new SuccesResult(Messages.ProductDeleted);
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-           return  new SuccessDataResult<Product> (_efProductDal.Get(p => p.ProductId == productId));
+           return  new SuccessDataResult<Product> (_productDal.Get(p => p.ProductId == productId));
         }
 
         public IDataResult<List<Product>> GetList()
         {
-            return new SuccessDataResult<List<Product>>(_efProductDal.GetList().ToList());
+            return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
         }
 
         public IDataResult<List<Product>> GetListByCategory(int CategoryId)
         {
-            return new SuccessDataResult<List<Product>>(_efProductDal.GetList(p => p.CategoryId == CategoryId).ToList());
+            return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == CategoryId).ToList());
         }
 
         public IResult Update(Product product)
         {
-            _efProductDal.Update(product);
+            _productDal.Update(product);
             return new SuccesResult(Messages.ProductUpdated);
         }
     }

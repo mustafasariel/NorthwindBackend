@@ -11,10 +11,10 @@ namespace Business.Abstract
         IDataResult<Product> GetById(int productId);
         IDataResult<List<Product>> GetList();
         IDataResult<List<Product>> GetListByCategory(int CategoryId);
-
+        IResult Add(Product product);
         IResult Delete(Product product);
         IResult Update(Product product);
 
-        IResult Add(Product product);
+
     }
 }
