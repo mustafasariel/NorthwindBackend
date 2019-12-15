@@ -13,8 +13,12 @@ namespace Business.DependencyResolvers.Autofact
     {
         protected override void Load(ContainerBuilder builder)
         {
+           
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<EfProductDal>().As<IProductDal>();
+
+            builder.RegisterType<CategoryManager>().As<ICategoryService>();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
 
             base.Load(builder);
         }
