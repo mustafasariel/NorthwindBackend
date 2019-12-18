@@ -13,5 +13,9 @@ namespace Business.Constant
         public static string CategoryAdd = "Kategori başarıyla eklendi";
         public static string CategoryUpdated = "Kategori başarıyla güncellendi";
         public static string CategoryDeleted = "Kategori başarıyla silindi";
+
+        public static string RegionAdd = "Region başarıyla eklendi";
+        public static string RegionUpdated = "Region başarıyla güncellendi";
+        public static string RegionDeleted = "Region başarıyla silindi";
     }
 }

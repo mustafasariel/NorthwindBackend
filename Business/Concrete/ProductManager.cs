@@ -27,7 +27,11 @@ namespace Business.Concrete
             _productDal.Add(product);
             return new SuccesResult(Messages.ProductAdd);
         }
-
+        public IResult Update(Product product)
+        {
+            _productDal.Update(product);
+            return new SuccesResult(Messages.ProductUpdated);
+        }
         public IResult Delete(Product product)
         {
             _productDal.Delete(product);
@@ -50,10 +54,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == CategoryId).ToList());
         }
 
-        public IResult Update(Product product)
-        {
-            _productDal.Update(product);
-            return new SuccesResult(Messages.ProductUpdated);
-        }
+      
     }
 }
