@@ -20,10 +20,11 @@ namespace Business.DependencyResolvers.Autofact
             builder.RegisterType<CategoryManager>().As<ICategoryService>();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
 
-
-       
             builder.RegisterType<RegionManager>().As<IRegionService>();
             builder.RegisterType<EfRegionDal>().As<IRegionDal>();
+
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
 
             base.Load(builder);
         }

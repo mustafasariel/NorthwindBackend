@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,11 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Region> Region { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserClaim> UserClaims { get; set; }
+        public DbSet<Claim> Claims { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=msariel\SQLEXPRESS;Database=Northwind;Integrated security=true;");

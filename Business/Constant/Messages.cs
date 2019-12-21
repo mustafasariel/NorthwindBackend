@@ -17,5 +17,7 @@ namespace Business.Constant
         public static string RegionAdd = "Region başarıyla eklendi";
         public static string RegionUpdated = "Region başarıyla güncellendi";
         public static string RegionDeleted = "Region başarıyla silindi";
+
+        public static string UserAdd { get; internal set; }
     }
 }
