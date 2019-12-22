@@ -15,8 +15,8 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 
         public DbSet<Region> Regions { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserClaim> UserClaims { get; set; }
-        public DbSet<Claim> Claims { get; set; }
+        public DbSet<UserRole> UserClaims { get; set; }
+        public DbSet<Role> Claims { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

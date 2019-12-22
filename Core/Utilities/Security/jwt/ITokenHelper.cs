@@ -7,6 +7,6 @@ namespace Core.Utilities.Security.jwt
 {
     public interface ITokenHelper
     {
-        AccessToken CreateToken(User user, List<Claim> claims);
+        AccessToken CreateToken(User user, List<Role> claims);
     }
 }

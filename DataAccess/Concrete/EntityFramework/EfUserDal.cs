@@ -12,15 +12,15 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, NorthwindContext>, IUserDal
     {
-        public List<Claim> GetClaims(User user)
+        public List<Role> GetRoles(User user)
         {
             using (var context = new NorthwindContext())
             {
                 var result = from c in context.Claims
                              join uc in context.UserClaims
-                             on c.Id equals uc.ClaimId
+                             on c.Id equals uc.RoleId
                              where uc.UserId == user.Id
-                             select new Claim
+                             select new Role
                              {
                                  Id = c.Id,
                                  Name = c.Name
