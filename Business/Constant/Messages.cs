@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,6 +19,14 @@ namespace Business.Constant
         public static string RegionUpdated = "Region başarıyla güncellendi";
         public static string RegionDeleted = "Region başarıyla silindi";
 
-        public static string UserAdd { get; internal set; }
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Kullanıcı başarılı giriş yaptı";
+        public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
+
+
+        public static string UserCreateInfo = "Kullanıcı kayıt edilelir";
+
+        public static string UserRegistered = "Kullanıcı başarı ile kayıt edildi";
     }
 }

@@ -14,7 +14,7 @@ namespace Core.Utilities.Security.jwt
 {
     public class JwtHelper : ITokenHelper
     {
-        public IConfiguration Configuration { get;  }
+        public IConfiguration Configuration { get; }
 
         TokenOptions _tokenOptions;
 
@@ -30,10 +30,15 @@ namespace Core.Utilities.Security.jwt
         {
             //new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
             var securityKey = SecurityHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
-
             var signingCredentials = SigningCredentialHelper.CreateSigningCredentials(securityKey);
-
-            return null;
+            var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, claims);
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var token = jwtSecurityTokenHandler.WriteToken(jwt);
+            return new AccessToken
+            {
+                Token = token,
+                Expiration = _accessTokenExpiration
+            };
         }
 
         public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
@@ -53,7 +58,7 @@ namespace Core.Utilities.Security.jwt
 
         }
 
-        IEnumerable<Claim> SetClaims(User user,List<Role> roles )
+        IEnumerable<Claim> SetClaims(User user, List<Role> roles)
         {
             var claims = new List<Claim>();
             claims.AddEmail(user.Email);
